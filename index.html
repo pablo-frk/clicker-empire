@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clicker Empire</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1>Clicker Empire</h1>
+
+    <div class="containers">
+        <div class="gameScreen"></div>
+        <div class="mainContainer">
+
+        </div>
+
+        <div class="buyContainer">
+            <div></div>
+            <p id="autoCoinDisplay">Coin/Segundos: 0</p>
+            <input type="button" value="Comprar Casa - 30" onclick="buyHouse()" />
+            <input type="button" value="Comprar Taberna - 125" onclick="buyTabern()" />
+            <input type="button" value="Comprar Torre de Vigia - 3K" onclick="buyTower()" />
+        </div>
+    </div>
+
+
+
+    <div class="workArea">
+
+        <input type="button" onclick="clicou()" value="TRABALHAR" id="coin-btn" />
+
+        <p id="coinDisplay">Dinheiro: 30</p>
+        <p id="houseDisplay">Casas: 0</p>
+        <p id="tabernDisplay">Tabernas: 0</p>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

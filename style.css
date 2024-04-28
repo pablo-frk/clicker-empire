@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+body {
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.containers{
+    display: flex;
+    width: 100vh;
+    height: 70vh;
+    background-color: aqua;
+    justify-content: space-between;
+}
+
+.gameScreen {
+    display: flex;
+    justify-content: center;
+    width: 100vh;
+    height: 100%;
+    background-image: url(Vila\ medieval\ pixel\ art.avif);
+    background-size: cover;
+}
+
+.mainContainer {
+    color: white;
+    font-size: 1.5em;
+    padding: 1vh;
+}
+
+.mainContainer p {
+    filter:drop-shadow(2px 2px 1px black); 
+}
+.buyContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.buyContainer input{
+    padding: 20px;
+}
+
+#coin-btn {
+    padding: 20px;
+}
+
+.workArea {
+    width: 100vh;
+    display: flex;
+    gap: 1vh;
+    justify-content: right;
+}
