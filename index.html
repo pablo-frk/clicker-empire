@@ -18,10 +18,20 @@
         </div>
 
         <div class="buyContainer">
+            <!-- <img src="menuBar.png" alt="" id="menuBar"> -->
             <div></div>
             <p id="autoCoinDisplay">Coin/Segundos: 0</p>
-            <input type="button" value="Comprar Casa - 30" onclick="buyHouse()" />
-            <input type="button" value="Comprar Taberna - 125" onclick="buyTabern()" />
+            <p id="taxaDeCliqueDisplay">Coin/Click: 0</p>
+
+            <div class="btn-buy" id="btn-buy-house" onclick="buyHouse()">
+                <img src="house.png" alt="" height="80%">
+                <h3 id="buyHouseBtnDisplay">Comprar Casa - 30</h3>   
+            </div>
+
+            <div class="btn-buy" id="btn-buy-house" onclick="buyTabern()">
+                <img src="tavern.png" alt="" height="80%">
+                <h3 id="buyTavernBtnDisplay">Comprar Taberna - 125</h3>   
+            </div>
             <input type="button" value="Comprar Torre de Vigia - 3K" onclick="buyTower()" />
         </div>
     </div>
@@ -35,6 +45,7 @@
         <p id="coinDisplay">Dinheiro: 30</p>
         <p id="houseDisplay">Casas: 0</p>
         <p id="tabernDisplay">Tabernas: 0</p>
+        <p id="towerDisplay">Torres: 0</p>
     </div>
 
 
