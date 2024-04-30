@@ -5,6 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Clicker Empire</title>
         <link rel="stylesheet" href="style.css" />
+        <style>
+            body {
+                cursor: url(cursor/cursor.png), auto;
+            }
+        </style>
     </head>
 
     <body>
@@ -16,24 +21,29 @@
 
             <div class="buyContainer">
                 <!-- <img src="menuBar.png" alt="" id="menuBar"> -->
-                <div></div>
-                <p id="autoCoinDisplay">Coin/Segundos: 0</p>
-                <p id="taxaDeCliqueDisplay">Coin/Click: 0</p>
+                <span class="legenda">
+                    <img src="coin.png" alt="" />
+                    <p id="autoCoinDisplay">/Segundos: 0</p></span
+                >
+                <span class="legenda">
+                    <img src="coin.png" alt="" />
+                    <p id="taxaDeCliqueDisplay">/Click: 0</p></span
+                >
 
                 <div class="btn-buy" id="btn-buy-house" onclick="buyHouse()">
                     <img src="house.png" alt="" height="80%" />
                     <h3 id="buyHouseBtnDisplay">Comprar Casa - 30</h3>
                 </div>
 
-                <div class="btn-buy" id="btn-buy-house" onclick="buyTabern()">
+                <div class="btn-buy" id="btn-buy-tabern" onclick="buyTabern()">
                     <img src="tavern.png" alt="" height="80%" />
                     <h3 id="buyTavernBtnDisplay">Comprar Taberna - 125</h3>
                 </div>
-                <input
-                    type="button"
-                    value="Comprar Torre de Vigia - 3K"
-                    onclick="buyTower()"
-                />
+
+                <div class="btn-buy" id="btn-buy-tower" onclick="buyTabern()">
+                    <img src="tower.png" alt="" height="80%" />
+                    <h3 id="buyTowerBtnDisplay">Comprar Torre - 125</h3>
+                </div>
             </div>
         </div>
 
@@ -45,12 +55,25 @@
                 id="coin-btn"
             />
 
-            <p id="coinDisplay">Dinheiro: 30</p>
-            <p id="houseDisplay">Casas: 0</p>
-            <p id="tabernDisplay">Tabernas: 0</p>
-            <p id="towerDisplay">Torres: 0</p>
+            <span class="legenda"
+                ><img src="coin.png" alt="" />
+                <p id="coinDisplay">30</p>
+            </span>
+            <span class="legenda">
+                <img src="/house.png" alt="" />
+                <p id="houseDisplay">0</p>
+            </span>
+            <span class="legenda"
+                ><img src="tavern.png" alt="" />
+                <p id="tabernDisplay">0</p>
+            </span>
+            <span class="legenda"
+                ><img src="tower.png" alt="" style="width: auto" />
+                <p id="towerDisplay">0</p>
+            </span>
         </div>
 
+        <audio src="sfx/click.flac" id="clickSound"></audio>
         <script src="script.js"></script>
     </body>
 </html>

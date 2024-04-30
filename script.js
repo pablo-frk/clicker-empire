@@ -14,6 +14,9 @@ let towerDisplay = document.getElementById("towerDisplay");
 let taxaDeGeracao = 0;
 let taxaDeClick = 0;
 
+// AUXILIADORES PARA CHECAR POSTERIORMENTE SE O USUARIO TEM AS CONSTRUÇÕES
+let haveTabern = true
+
 // Valores
 let housePrice = 30;
 let tabernPrice = 125;
@@ -21,13 +24,25 @@ let towerPrice = 3000;
 
 // MUDAR VALORES DOS ITEMS NO MENU DE COMPRAS
 let buyHouseBtnDisplay = document.getElementById("buyHouseBtnDisplay");
+let buyTabernBtnDisplay = document.getElementById("buyTavernBtnDisplay");
+
+
+// AUDIOS
+let clickSound = new Audio('sfx/click.flac');
+
 
 ////////////////////////////////////////// FUNCIONALIDADES
+
+document.body.addEventListener('click', function() {
+    let clickSound = new Audio('sfx/click.flac')
+    clickSound.play()
+});
 
 // Clicar
 function clicou() {
     if (taxaDeClick > 0) {
         coin += taxaDeClick;
+        
     } else {
         window.alert("Você precisa ter uma casa primeiro");
     }
@@ -41,9 +56,9 @@ function buyHouse() {
     if (coin >= housePrice) {
         house++;
         coin -= housePrice;
-        housePrice = parseFloat((housePrice + housePrice * 0.1).toFixed(2));
+        housePrice = parseFloat((housePrice + housePrice * 0.05).toFixed(2));
         haveHouse = true;
-        taxaDeClick++;
+        taxaDeClick = house;
         atualizarDisplay();
     } else {
         alert(`Você precisa ter ${housePrice} coins para comprar uma casa`);
@@ -55,10 +70,13 @@ function buyTabern() {
     if (coin >= tabernPrice) {
         tabern++;
         coin -= tabernPrice;
-        haveTabern = true;
+        tabernPrice = parseFloat((tabernPrice + tabernPrice * 0.14).toFixed(2));
         autoCoin = true;
-        taxaDeGeracao += 10;
+        taxaDeGeracao += tabern * 10;
         atualizarDisplay();
+        haveTabern = true
+    }else {
+        alert('Você não tem dinheiro suficiente')
     }
 }
 
@@ -67,58 +85,63 @@ function buyTower() {
     if (coin >= towerPrice) {
         tower++;
         coin -= towerPrice;
+        towerPrice = parseFloat((tabernPrice + towerPrice * 0.05))
         haveTower = true;
-        taxaDeClick;
+        taxaDeClick += 40;
+    }
+    else {
+        alert('Você não tem dinheiro suficiente')
     }
 }
 
 // Atualizar o display
 function atualizarDisplay() {
     if (coin < 1000) {
-        coinDisplay.innerHTML = `Dinheiro: ${coin.toFixed(1)}`;
+        coinDisplay.innerHTML = `: ${coin.toFixed(0)}`;
     } else if (coin < 1000000) {
-        coinDisplay.innerHTML = `Dinheiro: ${(coin / 1000).toFixed(1)}K`;
+        coinDisplay.innerHTML = `: ${(coin / 1000).toFixed(1)}K`;
     } else if (coin < 1000000000) {
-        coinDisplay.innerHTML = `Dinheiro: ${(coin / 1000000).toFixed(1)}M`;
+        coinDisplay.innerHTML = `: ${(coin / 1000000).toFixed(1)}M`;
     } else {
-        coinDisplay.innerHTML = `Dinheiro: ${(coin / 1000000000).toFixed(1)}B`;
+        coinDisplay.innerHTML = `: ${(coin / 1000000000).toFixed(1)}B`;
     }
 
     if (taxaDeGeracao < 1000) {
-        autoCoinDisplay.innerHTML = `Coin/Segundos: ${taxaDeGeracao.toString()}`;
+        autoCoinDisplay.innerHTML = `/Segundos: ${taxaDeGeracao.toString()}`;
     } else if (coin < 1000000) {
-        autoCoinDisplay.innerHTML = `Coin/Segundos: ${(
+        autoCoinDisplay.innerHTML = `/Segundos: ${(
             taxaDeGeracao / 1000
         ).toFixed(1)}K`;
     } else if (coin < 1000000000) {
-        autoCoinDisplay.innerHTML = `Coin/Segundos: ${(
+        autoCoinDisplay.innerHTML = `/Segundos: ${(
             taxaDeGeracao / 1000000
         ).toFixed(1)}M`;
     } else {
-        autoCoinDisplay.innerHTML = `Coin/Segundos: ${(
+        autoCoinDisplay.innerHTML = `/Segundos: ${(
             taxaDeGeracao / 1000000000
         ).toFixed(1)}B`;
     }
 
     if (taxaDeClick < 1000) {
-        taxaDeClickDisplay.innerHTML = `Coin/Click: ${taxaDeClick.toString()}`;
+        taxaDeClickDisplay.innerHTML = `/Click: ${taxaDeClick.toString()}`;
     } else if (coin < 1000000) {
-        taxaDeClickDisplay.innerHTML = `Coin/Click: ${(
+        taxaDeClickDisplay.innerHTML = `/Click: ${(
             taxaDeClick / 1000
         ).toFixed(1)}K`;
     } else if (coin < 1000000000) {
-        taxaDeClickDisplay.innerHTML = `Coin/Click: ${(
+        taxaDeClickDisplay.innerHTML = `/Click: ${(
             taxaDeClick / 1000000
         ).toFixed(1)}M`;
     } else {
-        taxaDeClickDisplay.innerHTML = `Coin/Click: ${(
+        taxaDeClickDisplay.innerHTML = `/Click: ${(
             taxaDeClick / 1000000000
         ).toFixed(1)}B`;
     }
 
-    houseDisplay.innerHTML = `Casas: ${house}`;
-    tabernDisplay.innerHTML = `Tabernas: ${tabern}`;
-    buyHouseBtnDisplay.innerHTML = `Comprar Casa - $${housePrice}`;
+    houseDisplay.innerHTML = `: ${house}`;
+    tabernDisplay.innerHTML = `: ${tabern}`;
+    buyHouseBtnDisplay.innerHTML = `Comprar Casa - $${housePrice.toFixed(0)}`;
+    buyTabernBtnDisplay.innerHTML = `Comprar Taberna - $${tabernPrice.toFixed(0)}`
 }
 
 // Comandos para auxiliar
@@ -126,6 +149,10 @@ const ganharMoedas = (a) => {
     coin += a;
     atualizarDisplay();
 };
+
+if(haveTabern) {
+    taxaDeGeracao += tabern * 10
+}
 
 // Atualizador de moedas
 function gerarCoins() {
@@ -138,5 +165,5 @@ function iniciar() {
     atualizarDisplay();
 }
 
+
 window.onload = iniciar;
-window.onload = formatCoins(coin);
