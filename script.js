@@ -1,4 +1,4 @@
-let coin = 3000;
+let coin = 30;
 let house = 0;
 let tabern = 0;
 let tower = 0;
