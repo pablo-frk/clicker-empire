@@ -24,12 +24,12 @@
                     <!-- <img src="menuBar.png" alt="" id="menuBar"> -->
                     <span class="legenda">
                         <img src="img/coin.png" alt="" />
-                        <p id="autoCoinDisplay">/Segundos: 0</p></span
-                    >
+                        <p id="autoCoinDisplay">/Segundos: 0</p>
+                    </span>
                     <span class="legenda">
                         <img src="img/coin.png" alt="" />
-                        <p id="taxaDeCliqueDisplay">/Click: 0</p></span
-                    >
+                        <p id="taxaDeCliqueDisplay">/Click: 0</p>
+                    </span>
 
                     <div
                         class="btn-buy"
@@ -56,6 +56,11 @@
                     >
                         <img src="img/tower.png" alt="" height="80%" />
                         <h3 id="buyTowerBtnDisplay">Comprar Torre - 3000</h3>
+                    </div>
+
+                    <div class="btn-buy" id="btn-buy-farm" onclick="buyFarm()">
+                        <img src="" alt="" height="80%" />
+                        <h3 id="buyFarmBtnDisplay">Comprar Fazenda - 10000</h3>
                     </div>
                 </div>
             </div>
@@ -84,8 +89,14 @@
                     ><img src="img/tower.png" alt="" style="width: auto" />
                     <p id="towerDisplay">0</p>
                 </span>
+
+                <span class="legenda"
+                    ><img src="" alt="" style="width: auto" />
+                    <p id="farmDisplay">0</p>
+                </span>
             </div>
         </div>
+        <script src="saveGame.js"></script>
         <script src="script.js"></script>
     </body>
 </html>
