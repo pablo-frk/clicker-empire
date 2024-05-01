@@ -2,6 +2,8 @@ let coin = 30;
 let house = 0;
 let tabern = 0;
 let tower = 0;
+let farm = 0
+
 
 let coinDisplay = document.getElementById("coinDisplay");
 let autoCoinDisplay = document.getElementById("autoCoinDisplay");
@@ -9,6 +11,7 @@ let taxaDeClickDisplay = document.getElementById("taxaDeCliqueDisplay");
 let houseDisplay = document.getElementById("houseDisplay");
 let tabernDisplay = document.getElementById("tabernDisplay");
 let towerDisplay = document.getElementById("towerDisplay");
+let farmDisplay = document.getElementById("farmDisplay")
 
 // TAXA DE GERAÇÃO DE COINS POR SEGUNDO e CLICKS
 let taxaDeGeracao = 0;
@@ -21,11 +24,14 @@ let haveTabern = true;
 let housePrice = 30;
 let tabernPrice = 125;
 let towerPrice = 3000;
+let farmPrice = 10000
 
 // MUDAR VALORES DOS ITEMS NO MENU DE COMPRAS
 let buyHouseBtnDisplay = document.getElementById("buyHouseBtnDisplay");
 let buyTabernBtnDisplay = document.getElementById("buyTavernBtnDisplay");
 let buyTowerBtnDisplay = document.getElementById("buyTowerBtnDisplay")
+let buyFarmBtnDisplay = document.getElementById("buyFarmBtnDisplay")
+
 
 // AUDIOS
 let clickSound = new Audio("sfx/click.flac");
@@ -91,6 +97,19 @@ function buyTower() {
     }
 }
 
+function buyFarm() {
+    if (coin >= farmPrice) {
+        farm++
+        coin -= farmPrice;
+        farmPrice += 5000
+        
+        taxaDeGeracao += 1500
+
+    } else {
+        alert("Você não tem dinheiro suficiente");
+    }
+}
+
 // Atualizar o display
 function atualizarDisplay() {
     if (coin < 1000) {
@@ -137,9 +156,12 @@ function atualizarDisplay() {
 
     houseDisplay.innerHTML = `: ${house}`;
     tabernDisplay.innerHTML = `: ${tabern}`;
+    towerDisplay.innerHTML = `: ${tower}`
+    farmDisplay.innerHTML = `Farm: ${farm}`
     buyHouseBtnDisplay.innerHTML = `Comprar Casa - $${housePrice.toFixed(0)}`;
     buyTabernBtnDisplay.innerHTML = `Comprar Taberna - $${tabernPrice.toFixed(0)}`;
     buyTowerBtnDisplay.innerHTML = `Comprar Torre - $${towerPrice.toFixed(0)}`
+    buyFarmBtnDisplay.innerHTML = `Comprar Fazenda - $${farmPrice}`
 }
 
 // Comandos para auxiliar
