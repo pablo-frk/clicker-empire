@@ -53,6 +53,7 @@ function clicou() {
 
     console.log(coin);
     atualizarDisplay();
+    salvarJogo();
 }
 
 // Comprar Casa
@@ -67,6 +68,8 @@ function buyHouse() {
     } else {
         alert(`Você precisa ter ${housePrice} coins para comprar uma casa`);
     }
+
+    salvarJogo();
 }
 
 // Comprar Taberna
@@ -183,6 +186,42 @@ function gerarCoins() {
 function iniciar() {
     setInterval(gerarCoins, 1000);
     atualizarDisplay();
+    carregarJogo();
 }
+
+function salvarJogo() {
+    const estadoJogo = {
+        coin: coin,
+        house: house,
+        tabern: tabern,
+        tower: tower,
+        farm: farm,
+        taxaDeGeracao: taxaDeGeracao,
+        taxaDeClick: taxaDeClick,
+        housePrice: housePrice,
+        tabernPrice: tabernPrice,
+        towerPrice: towerPrice,
+        farmPrice: farmPrice
+    };
+    localStorage.setItem('estadoJogo', JSON.stringify(estadoJogo));
+}
+function carregarJogo() {
+    const estadoSalvo = localStorage.getItem('estadoJogo');
+    if (estadoSalvo) {
+        const estadoJogo = JSON.parse(estadoSalvo);
+        coin = estadoJogo.coin;
+        house = estadoJogo.house;
+        tabern = estadoJogo.tabern;
+        tower = estadoJogo.tower;
+        farm = estadoJogo.farm;
+        taxaDeGeracao = estadoJogo.taxaDeGeracao;
+        taxaDeClick = estadoJogo.taxaDeClick;
+        housePrice = estadoJogo.housePrice;
+        tabernPrice = estadoJogo.tabernPrice;
+        towerPrice = estadoJogo.towerPrice;
+        farmPrice = estadoJogo.farmPrice;
+    }
+}
+
 
 window.onload = iniciar;
